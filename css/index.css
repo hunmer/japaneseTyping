@@ -1,7 +1,7 @@
 body {
 	caret-color: #ffda79;
 	color: #f7f1e3;
-	  background-image: url(../img/bg.jpg) !important;
+	  /*background-image: url(../img/bg.jpg) !important;*/
     background-position: center top;
     background-size: cover;
     background-attachment: fixed;
