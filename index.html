@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="full-screen" content="yes">
+<meta name="browsermode" content="application">
+<meta name="x5-fullscreen" content="true">
+<meta name="x5-page-mode" content="app">
+<link rel="shortcut icon" href="favicon.svg">
+<title>Reading</title>
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/halfmoon.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="css/index.css">
+
+
+<body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="false">
+	<div class="modal" id="dialog_room" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <a href="#" class="close" role="button" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </a>
+      <h5 class="modal-title">Room Setting</h5>
+			<div class="input-group mb-10" id="room_name">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text">title</span>
+			  </div>
+			  <input type="text" class="form-control" placeholder="部屋の名前" value="">
+			</div>
+			<div class="input-group mb-10" id="room_maxPlayer">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text">maxMember</span>
+			  </div>
+			  <input type="number" class="form-control" placeholder="最大限の参加者" value="5">
+			</div>
+			<div class="input-group mb-10" id="room_password">
+	  <div class="input-group-prepend">
+	    <div class="input-group-text">
+	      <div class="custom-checkbox">
+	        <input type="checkbox" id="checkbox-1" value="">
+	        <label for="checkbox-1" class="blank"></label>
+	      </div>
+	    </div>
+	  </div>
+	  <input type="text" class="form-control" placeholder="パスワード">
+	</div>
+
+
+	<div class="input-group mb-10" id="room_bgImg">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text">bgImg</span>
+		  </div>
+		  <input type="text" class="form-control" placeholder="url" value="./img/2.png">
+		</div>
+
+
+	<div class="custom-switch">
+	  <input type="checkbox" id="switch-1" value="" onselect="console.log(this.checked);">
+	  <label for="switch-1">Open</label>
+	</div>
+
+      <div class="text-right mt-20">
+        <a href="#" class="btn mr-5" role="button">Close</a>
+        <a href="#" class="btn btn-primary" role="button" data-action="saveRoomSetting">Save</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal modal-full ie-scroll-fix" id="dialog_rooms" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <a href="#" class="close" role="button" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </a>
+      <div class="container">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="dialog_user" tabindex="-1" role="dialog" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width: 70%;">
+      <a href="#" class="close" role="button" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </a>
+      <h5 class="modal-title">User Setting</h5>
+      <div class="text-center mb-10" id="user_icon">
+      		<img src="./img/chisato.jpg" class="img-fluid rounded-circle" style="width: 200px;" alt="rounded circle image">
+      </div>
+      <hr style="background-color: #fff;margin-top: 20px;margin-bottom: 40px;"/>
+      <div class="row mb-10">
+	      	<div class="input-group-lg col" id="user_name">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text">name</span>
+					  </div>
+					  <input type="text" class="form-control userSetting_input" placeholder="名前" value="">
+					</div>
+					<div class="input-group-lg col mb-10" id="user_country">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text">from</span>
+					  </div>
+					  <input type="text" class="form-control userSetting_input" placeholder="国" value="">
+					</div>
+				</div>
+				<div class="input-group-lg col mb-10 ml-auto" id="user_desc">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text">note</span>
+					  </div>
+					  <textarea class="form-control userSetting_input" placeholder="一言"></textarea>
+					</div>
+					<div class="text-right mt-20">
+        <a href="#" class="btn mr-5" role="button">Close</a>
+        <a href="#" class="btn btn-primary" role="button" data-action="saveUserSetting">Save</a>
+      </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+	<div class="progress" id="top_progress">
+	  <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+	</div>
+
+	<!--  with-navbar-fixed-bottom -->
+  <div class="page-wrapper with-navbar with-sidebar" data-sidebar-hidden="hidden">
+    <div class="sticky-alerts"></div>
+    <nav class="navbar" style="height: 65px;">
+      <div class="navbar-content">
+        <div class="dropdown with-arrow">
+          <button class="btn" data-toggle="dropdown" type="button" id="navbar-fixed-bottom-dropdown-toggle">
+            Setting
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="navbar-fixed-bottom-dropdown-toggle">
+            <a data-action="reset" class="dropdown-item">Reset</a>
+            <a data-action="setContent" class="dropdown-item">Content</a>
+            <a data-action="showRooms" class="dropdown-item">Rooms</a>
+            <a data-action="openUserDialog" class="dropdown-item">Profile</a>
+            <!-- <a href="#" class="dropdown-item">Examples</a>
+            <a href="#" class="dropdown-item">Support</a>
+            <a href="#" class="dropdown-item">Contact us</a> -->
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-content">
+				      <button class="btn btn-block btn-primary" type="button" data-action="dialog_room">RoomSetting</button>
+				    </div>
+				    <div class="dropdown-divider"></div>
+            <div class="dropdown-content">
+				      <div class="custom-switch">
+						  <input type="checkbox" id="switch-darkMode" onchange="halfmoon.toggleDarkMode();">
+						  <label for="switch-darkMode">dark</label>
+						</div>
+				    </div>
+          </div>
+        </div>
+      </div>
+      <div id="list_icon" class="ml-auto">
+      	<!-- <div class="user-list">
+      		<div>
+      		<img src="./img/chisato.jpg" class="img-fluid rounded-circle user-icon" alt="rounded circle image">
+      		</div>
+      		<span class="badge badge-pill">Offline</span>
+      	</div>
+      	<div data-user="maki" class="user-list">
+      		<div>
+      		<img src="./img/maki.jpg" class="img-fluid rounded-circle user-icon" alt="rounded circle image"></div>
+      		<span class="badge badge-pill">Offline</span>
+      	</div> -->
+      </div>
+     
+      <span class="navbar-text ml-auto"> 
+      <!-- 	<img src="./img/maki.jpg" data-action="openUserDialog" class="img-fluid rounded-circle user-icon mr-5" alt="rounded circle image"> -->
+       <div class="dropdown dropleft with-arrow" id="dropdown_chat"  onclick="g_cache.unread = 0;$('#unread').hide();">
+  <button class="btn btn-primary" data-toggle="dropdown" type="button" id="sign-in-dropdown-toggle-btn" aria-haspopup="true" aria-expanded="false">  <i class="fa fa-angle-left mr-5" aria-hidden="true"></i>
+    Chat<span class="badge badge-danger badge-success ml-5" style="display: none" id='unread'>0</span>
+  </button>
+  <div class="dropdown-menu w-250 w-sm-350" aria-labelledby="sign-in-dropdown-toggle-btn"> 
+    <div class="dropdown-content p-20">
+      <h5 id='room_title' class='text-center'></h5>
+    	<h5 id='chat_title'></h5>
+      <div id="chat_list">
+      	<!-- <div class="position-relative"> 
+  			<div class="position-absolute left-0">
+      		<img src="./img/chisato.jpg" class="img-fluid rounded-circle user-icon" alt="rounded circle image">
+      		<div class="msg alert" role="alert">
+					  Hello
+					</div>
+  			</div> 
+				</div>
+				<div class="space"></div>
+      	<div class="position-relative"> 
+  			<div class="position-absolute right-0 text-right">
+      		<img src="./img/maki.jpg" class="img-fluid rounded-circle user-icon" alt="rounded circle image">
+      		<div class="msg alert" role="alert">
+					  Hello
+					</div>
+  			</div> 
+				</div>
+				<div class="space"></div> -->
+      </div>
+
+      <div class="row" id="chat_input">
+	      <input type="text" class="form-control col-8" placeholder="enter msg" onkeydown="if(event.keyCode == 13) doAction('sendMsg');">
+	      <span class='col'></span>
+				<button class="btn btn-primary btn-rounded col" data-action="sendMsg" style="max-width: fit-content;" type="button">send</button>
+			</div>
+
+    </div>
+    <div class="dropdown-divider"></div>
+  </div>
+</div>
+      </span>
+    </nav>
+    <div class="sidebar" style="min-width: 500px;display: none;">
+  <div class="sidebar-menu">
+    <a href="#" class="sidebar-brand p-20">
+      <!-- <img src="..." alt="..."> -->
+      JapaneseTyping
+    </a>
+    <div class="row">
+    	<span class='col-2'></span>
+      <input type="text" class="form-control col-6" placeholder="Search">
+			<button class="btn btn-primary btn-rounded col" style="margin-left: 20px;max-width: 100px;" type="button">search</button>
+		</div>
+    </div>
+    <h5 class="sidebar-title">小説</h5>
+    <div class="sidebar-divider"></div>
+    <div id="noval-list">
+	    <h4 style="text-align: center;color: black;">empty.</h4>
+	    <br />
+	  </div>
+    <h5 class="sidebar-title">Components</h5>
+    <div class="sidebar-divider"></div>
+    <a href="#" class="sidebar-link sidebar-link-with-icon">
+      <span class="sidebar-icon">
+        <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+      </span>
+      File explorer
+    </a>
+    <a href="#" class="sidebar-link sidebar-link-with-icon">
+      <span class="sidebar-icon">
+        <i class="fa fa-table" aria-hidden="true"></i>
+      </span>
+      Spreadsheet
+    </a>
+    <a href="#" class="sidebar-link sidebar-link-with-icon">
+      <span class="sidebar-icon">
+        <i class="fa fa-map-o" aria-hidden="true"></i>
+      </span>
+      Map
+    </a>
+    <a href="#" class="sidebar-link sidebar-link-with-icon">
+      <span class="sidebar-icon">
+        <i class="fa fa-commenting-o" aria-hidden="true"></i>
+      </span>
+      Messenger
+    </a>
+  </div>
+    <div class="content-wrapper">
+    	<button id='time' class="btns btn-primary p-5 rounded point" type="button">00:00</button>
+	<div id='FTmenu'>
+		<div class="layer">
+			<span id='tip'></span>
+		</div>
+	</div>
+	<div id='FTmenu_top'>
+		<div class="layer">
+			<span id='tip'></span>
+		</div>
+	</div>
+	<div class="row p-20" style="font-size: 2rem;">
+		<div class="col-1 text-left">
+		</div>
+		<div class="col text-center">
+			<h3 id='title'></h3>
+		</div>
+		<div class="col-1 text-right">
+		</div>
+	</div>
+	<div class="reading-content backdrop-blur"></div>
+
+    </div>
+   
+  </div>
+  </div>
+    <audio id='audio_tip' autoplay></audio>
+</body>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/until.js"></script>
+<script src="./js/speaker.js"></script>
+<script src="./js/halfmoon.min.js"></script>
+<script src="./js/main.js"></script>

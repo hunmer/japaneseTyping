@@ -1,0 +1,203 @@
+body {
+	caret-color: #ffda79;
+	color: #f7f1e3;
+	  background-image: url(../img/bg.jpg) !important;
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+::selection { background:#ff9632; color: #000;color:#fff; } 
+::-moz-selection { background:#ff9632;color: #000; color:#fff;} /*火狐浏览器*/
+::-webkit-selection { background:#ff9632; color: #000; color:#fff;} /*谷歌*/
+
+.backdrop-blur {
+  backdrop-filter: brightness(0.7);
+  border-radius: 20px;
+}
+
+.reading-content {
+	width: 100%;
+	max-width: 1600px;
+	margin: 0 auto;
+	padding: 20px;
+	padding-bottom: 100px;
+}
+
+/*.reading-content .content {
+	font-size: 2.5rem;
+}
+*/
+.reading-content p {
+	margin-bottom: 20px;
+}
+
+.reading-content textarea {
+	color: unset;
+	padding: 0;
+  min-height: unset;
+	overflow-y: hidden;
+	border: 0;
+    border-bottom: solid 2px;
+    outline: none;
+        background-color: unset;
+        resize: none
+}
+
+.speaking_word {
+	background-color: #34ace0;
+}
+
+.rounded {
+	border-radius:30px !important;
+}
+
+.point {
+	cursor: pointer;
+}
+
+#time {
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	z-index: 99999;
+}
+
+#FTmenu {
+    z-index: 999999;
+	position: fixed;
+	display: block;
+	width: 100%;
+	top: 50px;
+	margin: 0 auto;
+	display: none;
+}
+
+#FTmenu .layer {
+    padding: 10px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 50px;
+    width: 30%;
+    min-width: fit-content;
+    background-color: rgba(0, 0, 0, .6);
+}
+
+
+#tip {
+	font-size: 2rem;
+	color: #3498db;
+}
+
+.collapse-content li {
+	padding: 10px;
+	border-bottom: 1px solid gray;
+}
+
+.user-icon {
+	width: 30px;
+	margin-left: 8px;
+}
+
+.user-icon-sm {
+	width: 25px;
+}
+
+.user-list {
+
+	display: grid;
+	margin-right: 10px;
+}
+
+.user-list .badge {
+	text-align: center;
+	font-size: 10px;
+}
+
+.user-list img {
+	/*margin-bottom: 2px;*/
+}
+
+.user-list div {
+	width: 100%;
+}
+
+#list_icon {
+	display: inherit;
+}
+
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+#top_progress {
+	left: 0;
+	position: fixed;
+	top: 0;
+	height: 5px;
+	    width: 100%;
+}
+
+.userSetting_input {
+	width: 80%;
+	margin: 0 auto;
+}
+#dialog_user .input-group-text {
+	margin-bottom: 10px;
+}
+
+.float-icon {
+	position: absolute;
+	z-index: 9999;
+	opacity: .8;
+	/*display: none;*/
+}
+
+.chat {
+	margin-bottom: 20px;
+}
+
+.msg {
+	width: fit-content;
+}
+
+#chat_list {
+	padding: 20px;
+	margin-bottom: 20px;
+	background-color: rgba(255,255,255,.05);
+	border-radius: 20px;
+	height: 200px;
+	max-height: 200px;
+    overflow-y: auto;
+}
+
+#chat_list .msg {
+	border-radius: 15px;
+    max-width: 90%;
+}
+
+.chat-left .msg {
+    margin-left: 22px;
+}
+
+.chat-right {
+	text-align: right;
+}
+
+#chat_input input[type="text"]{
+	border-radius: 15px;
+}
+
+.space {
+	display: block;
+	height: 120px;
+}
+
+@media screen and (min-width:321px) and (max-width:375px){.reading-content .content{font-size:11px}}
+@media screen and (min-width:376px) and (max-width:414px){.reading-content .content{font-size:12px}}
+@media screen and (min-width:415px) and (max-width:639px){.reading-content .content{font-size:15px}}
+@media screen and (min-width:640px) and (max-width:719px){.reading-content .content{font-size:20px}}
+@media screen and (min-width:720px) and (max-width:749px){.reading-content .content{font-size:22.5px}}
+@media screen and (min-width:750px) and (max-width:799px){.reading-content .content{font-size:23.5px}}
+@media screen and (min-width:800px){.reading-content .content{font-size:25px}}
