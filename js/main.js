@@ -8,8 +8,8 @@ var g_cache = {
 var _audio2;
 var connection;
 //var socket_url = 'ws://192.168.23.1:8000';
-// var socket_url = 'ws://127.0.0.1:8000';
 var socket_url = 'wss://japanese-typing-server1.glitch.me';
+// var socket_url = 'ws://127.0.0.1:8000';
 function recon() {
 	if(g_cache.logined){
 		if(confirm('是否重连?')){
@@ -342,9 +342,10 @@ function resizeTextArea(){
 					if(!img.length) img = $('#flot-icon-list').append(`
 						<img data-user1="`+data.username+`" src="`+ getUserIcon(data.username) +`" class="img-fluid rounded-circle user-icon-sm float-icon" alt="`+data.username+`">
 						`);
+						var parent =  $('.reading-content').offset();
 					img.css({
-						top: span.offset().top - img.height() - $('.reading-content').offset().top + 'px',
-						left: span.offset().left + 'px',
+						top: span.offset().top - img.height() - parent.top + 'px',
+						left: span.offset().left - parent.left + 'px',
 					});
 				}
 				break;
