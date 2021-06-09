@@ -4,6 +4,7 @@ var g_cache = {
 	queryList: [],
 	unread: 0,
 	b_history: false,
+	parse: {},
 }
 var _audio2;
 var connection;
@@ -12,9 +13,10 @@ var socket_url = 'wss://japanese-typing-server1.glitch.me';
 // var socket_url = 'ws://127.0.0.1:8000';
 function recon() {
 	if(g_cache.logined){
-		if(confirm('是否重连?')){
+		setTimeout(() => {initWebsock()}, 1000);
+		/*if(confirm('是否重连?')){
 			window.location.reload();
-		}
+		}*/
 	}
 }
 initWebsock();
@@ -158,13 +160,13 @@ function resizeTextArea(){
 				}else{
 
 					var id = div.attr('data-index');
-					if(g_history.parse[id] != undefined){
+					if(g_cache.parse[id] != undefined){
 						var str = '';
 						var b = false;
-						for(var d of g_history.parse[id]){
+						for(var d of g_cache.parse[id]){
 							if(right == '' || b && d[1] != null){
-								$('#tip').html(d[0] + '</br>' + d[1] || '').parents('#FTmenu').fadeIn('fast');
-								g_speaker.speak(d[1].indexOf('/') != -1 ? d[1].replaceAll('/', ' 、 ') : d[0], false);
+								$('#tip').html(d[0] + (d[1] != null ? '</br>' + d[1] : '')).parents('#FTmenu').fadeIn('fast');
+								g_speaker.speak(typeof(d) == 'string' && d[1].indexOf('/') != -1 ? d[1].replaceAll('/', ' 、 ') : d[0], false);
 								return;
 							}
 							str += d[0];
@@ -203,8 +205,7 @@ function resizeTextArea(){
 				if(span.text() == this.value){
 					var next = $(this).parent().next();
 					var textarea = next.find('textarea');
-					if(next.length) scrollTo(textarea.focus().offset().top - (window.innerHeight - next.height()) / 2, () => {
-					});
+					if(next.length) scrollTo(getElementPagePosition(textarea.focus()[0]).y - (window.innerHeight - next.height()) / 2, '.content-wrapper', 500);
 				}
 				event.preventDefault();
 				event.stopPropagation();
@@ -271,7 +272,7 @@ function resizeTextArea(){
 	}
 
 	function reviceMsg(data){
-		if(data.type != 'status') console.log(data);
+		if(data.type != 'status' && data.type != 'iconMove') console.log(data);
 		switch(data.type){
 			case 'rooms':
 				var h = '';

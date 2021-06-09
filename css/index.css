@@ -136,6 +136,7 @@ body {
 	position: fixed;
 	top: 0;
 	height: 5px;
+	z-index: 99999;
 	    width: 100%;
 }
 
@@ -174,7 +175,6 @@ body {
 
 #chat_list .msg {
 	border-radius: 15px;
-    max-width: 90%;
 }
 
 .chat-left .msg {
