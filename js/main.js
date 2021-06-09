@@ -184,7 +184,7 @@ function resizeTextArea(){
 				var index =  g_activeDiv.attr('data-index');
 				g_speaker.speak(text);
 				if(g_cache.parse[index] == undefined){
-						$.post(g_s_api+'api/japanese.php', { q: text, i: index}, function(data, textStatus, xhr) {
+						$.post(g_s_api+'japanese.php', { q: text, i: index}, function(data, textStatus, xhr) {
 	        if (textStatus == 'success') {
 	            g_data = JSON.parse(data);
 	        		g_cache.parse[g_data['index']] = g_data.res;

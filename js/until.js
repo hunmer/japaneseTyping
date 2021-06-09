@@ -5,8 +5,8 @@ String.prototype.replaceAll = function(s1, s2) {
 }
 
 var _GET = getGETArray();
-var g_s_api = './';
-//var api = '.';
+var g_s_api = './api/';
+var g_s_api = 'https://neysummer-api.glitch.me/';
 
 var g_localKey = 'reading_';
 // 本地储存前缀
