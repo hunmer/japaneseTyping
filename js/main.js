@@ -9,7 +9,7 @@ var _audio2;
 var connection;
 //var socket_url = 'ws://192.168.23.1:8000';
 // var socket_url = 'ws://127.0.0.1:8000';
-var socket_url = 'wss://japanese-typing-server.glitch.me';
+var socket_url = 'wss://japanese-typing-server1.glitch.me';
 function recon() {
 	if(g_cache.logined){
 		if(confirm('是否重连?')){
